@@ -549,6 +549,767 @@ footer {
   .hero-btns { flex-direction: column; align-items: center; }
   .btn { width: 100%; justify-content: center; }
 }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F0F4FF;
+  --navy: #0A1628;
+  --navy2: #122040;
+  --green: #3ABF3E;
+  --green2: #2DA631;
+  --green-soft: rgba(58,191,62,0.12);
+  --green-glow: rgba(58,191,62,0.28);
+  --blue: #1A6BF5;
+  --blue-soft: rgba(26,107,245,0.1);
+  --red: #F04E4E;
+  --yellow: #F5A623;
+  --text: #0A1628;
+  --text2: #4A5568;
+  --text3: #9AA5B8;
+  --border: rgba(10,22,40,0.1);
+  --card: #FFFFFF;
+  --card2: #F7F9FF;
+  --shadow: 0 4px 24px rgba(10,22,40,0.08);
+  --shadow-lg: 0 12px 48px rgba(10,22,40,0.14);
+  --lock: rgba(10,22,40,0.45);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 64px;
+}
+
+/* ── HEADER ── */
+.page-header {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--green2); }
+.screen-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.nav-btn {
+  padding: 7px 14px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: white;
+  color: var(--text2);
+  transition: all .2s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.nav-btn:hover, .nav-btn.active {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+}
+
+/* ── SCREENS WRAPPER ── */
+.screens-wrapper {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ── PHONE ── */
+.phone-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.phone-label {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.phone {
+  width: 320px;
+  height: 680px;
+  background: white;
+  border-radius: 48px;
+  border: 8px solid var(--navy);
+  box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255,255,255,0.1);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.phone-inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* notch */
+.notch {
+  width: 100px;
+  height: 28px;
+  background: var(--navy);
+  border-radius: 0 0 20px 20px;
+  margin: 0 auto;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* status bar */
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text2);
+  flex-shrink: 0;
+}
+
+.screen-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  padding: 0 20px 24px;
+}
+.screen-content::-webkit-scrollbar { display: none; }
+
+/* ── SHARED COMPONENTS ── */
+.screen-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+.screen-sub {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+.input-group { margin-bottom: 14px; }
+.input-label { font-size: 11px; font-weight: 700; color: var(--text2); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+.input-field {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--navy);
+  background: var(--card2);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  outline: none;
+  transition: border-color .2s;
+}
+.input-field:focus { border-color: var(--green2); }
+.input-field.has-icon { padding-left: 40px; }
+.input-wrap { position: relative; }
+.input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 16px; }
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: var(--navy);
+  color: white;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: -0.2px;
+}
+.btn-green {
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: white;
+  box-shadow: 0 4px 20px var(--green-glow);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text2);
+  border: 1.5px solid var(--border);
+}
+.btn-google {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow);
+}
+
+.divider-row { display: flex; align-items: center; gap: 10px; margin: 14px 0; }
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-text { font-size: 11px; color: var(--text3); font-weight: 600; }
+
+/* ── SCREEN 1: LOGIN ── */
+.login-hero {
+  text-align: center;
+  padding: 20px 0 24px;
+}
+.login-logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.login-logo span { color: var(--green2); }
+.login-tagline { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+/* ── SCREEN 2: BLOQUEADA (Open Finance) ── */
+.lock-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,22,40,0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 24px;
+  gap: 14px;
+}
+.lock-icon {
+  width: 64px;
+  height: 64px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.lock-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  text-align: center;
+}
+.lock-sub { font-size: 12px; color: rgba(255,255,255,0.7); text-align: center; line-height: 1.6; }
+.lock-btn {
+  width: 100%;
+  padding: 13px;
+  background: var(--green);
+  color: var(--navy);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+/* dashboard blur content */
+.blurred { filter: blur(3px); pointer-events: none; user-select: none; }
+
+/* ── SCREEN 3: CONECTAR BANCO ── */
+.of-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--blue-soft);
+  border: 1px solid rgba(26,107,245,0.2);
+  border-radius: 99px;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+.bank-list { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; }
+.bank-item {
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+}
+.bank-item:hover { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-soft); }
+.bank-item.selected { border-color: var(--green); background: var(--green-soft); }
+.bank-logo {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  flex-shrink: 0;
+}
+.bank-name { font-size: 13px; font-weight: 600; color: var(--navy); flex: 1; }
+.bank-check { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.bank-item.selected .bank-check { background: var(--green); border-color: var(--green); }
+.check-mark { color: white; font-size: 11px; font-weight: 800; }
+
+.security-note {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 12px 0;
+}
+.sec-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.sec-text { font-size: 11px; color: var(--text2); line-height: 1.5; }
+
+/* ── SCREEN 4: DASHBOARD ── */
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0 16px;
+}
+.dash-greeting { font-size: 12px; color: var(--text3); }
+.dash-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); }
+.avatar {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--blue), #6B3FD0);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.balance-card {
+  background: var(--navy);
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.balance-card::before {
+  content: '';
+  position: absolute;
+  right: -20px; top: -30px;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.balance-card::after {
+  content: '';
+  position: absolute;
+  right: 20px; bottom: -40px;
+  width: 90px; height: 90px;
+  background: rgba(0,200,150,0.12);
+  border-radius: 50%;
+}
+.balance-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; }
+.balance-total { font-family: 'Bricolage Grotesque', sans-serif; font-size: 30px; font-weight: 800; color: white; margin: 4px 0 2px; letter-spacing: -0.5px; }
+.balance-banks { font-size: 11px; color: rgba(255,255,255,0.45); }
+.balance-banks span { color: var(--green); font-weight: 600; }
+
+.balance-actions { display: flex; gap: 8px; margin-top: 14px; position: relative; z-index: 1; }
+.bal-action {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 8px 6px;
+  text-align: center;
+  cursor: pointer;
+}
+.bal-action-icon { font-size: 16px; }
+.bal-action-label { font-size: 9px; color: rgba(255,255,255,0.5); margin-top: 2px; font-weight: 500; }
+
+.banks-row { display: flex; gap: 8px; margin-bottom: 14px; }
+.bank-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 5px 10px 5px 5px;
+  box-shadow: var(--shadow);
+}
+.bank-pill-logo {
+  width: 22px; height: 22px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px;
+  font-weight: 800;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+.bank-pill-name { font-size: 10px; font-weight: 600; color: var(--navy); }
+.bank-pill-add {
+  background: var(--green-soft);
+  border: 1.5px dashed var(--green);
+  border-radius: 99px;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green2);
+  cursor: pointer;
+}
+
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.section-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); }
+.section-link { font-size: 11px; color: var(--blue); font-weight: 600; }
+
+.txn-list { display: flex; flex-direction: column; gap: 6px; }
+.txn-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.04);
+}
+.txn-icon {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.txn-info { flex: 1; }
+.txn-name { font-size: 12px; font-weight: 600; color: var(--navy); }
+.txn-date { font-size: 10px; color: var(--text3); margin-top: 1px; }
+.txn-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 13px; font-weight: 700; }
+.txn-val.out { color: var(--red); }
+.txn-val.in { color: var(--green2); }
+
+/* RADAR TOGGLE */
+.radar-toggle {
+  background: linear-gradient(135deg, #0A1628, #1A2E4A);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.radar-icon { font-size: 24px; }
+.radar-text { flex: 1; }
+.radar-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 13px; font-weight: 700; color: white; }
+.radar-sub { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.toggle {
+  width: 44px; height: 24px;
+  background: var(--green);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px var(--green-glow);
+}
+.toggle::after {
+  content: '';
+  width: 18px; height: 18px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px; right: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* ── SCREEN 5: SAÚDE FINANCEIRA ── */
+.health-score {
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  border-radius: 20px;
+  padding: 18px;
+  margin: 14px 0;
+  position: relative;
+  overflow: hidden;
+}
+.health-score::after {
+  content: '';
+  position: absolute;
+  right: -10px; bottom: -20px;
+  width: 100px; height: 100px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 50%;
+}
+.hs-label { font-size: 10px; font-weight: 700; color: rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 1px; }
+.hs-score { font-family: 'Bricolage Grotesque', sans-serif; font-size: 44px; font-weight: 800; color: var(--navy); line-height: 1; margin: 4px 0; }
+.hs-desc { font-size: 12px; color: rgba(0,0,0,0.6); font-weight: 500; }
+
+.metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.metric-card {
+  background: white;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+}
+.metric-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); }
+.metric-lbl { font-size: 10px; color: var(--text3); margin-top: 2px; font-weight: 500; }
+.metric-trend { font-size: 10px; font-weight: 700; margin-top: 4px; }
+.up { color: var(--green2); }
+.down { color: var(--red); }
+
+.bank-breakdown { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.bb-item {
+  background: white;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.04);
+}
+.bb-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.bb-bank { flex: 1; font-size: 12px; font-weight: 600; color: var(--navy); }
+.bb-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); }
+.bb-bar { height: 4px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+.bb-fill { height: 100%; border-radius: 2px; }
+
+/* ── SCREEN 6: RADAR ── */
+.radar-hero {
+  background: var(--navy);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 14px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.radar-pulse {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(58,191,62,0.12);
+  border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  position: relative;
+}
+.radar-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(58,191,62,0.25);
+  animation: pulse 2s infinite;
+}
+.radar-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 2px solid rgba(58,191,62,0.1);
+  animation: pulse 2s infinite 0.5s;
+}
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+.radar-emoji { font-size: 32px; position: relative; z-index: 1; }
+.radar-hero-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 800; color: white; margin-bottom: 4px; }
+.radar-hero-sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+
+.opp-list { display: flex; flex-direction: column; gap: 10px; }
+.opp-card {
+  background: white;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  border-left: 3px solid var(--green);
+  position: relative;
+  overflow: hidden;
+}
+.opp-card.new::before {
+  content: 'NOVA';
+  position: absolute;
+  top: 10px; right: 10px;
+  background: var(--green);
+  color: white;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 99px;
+  letter-spacing: 1px;
+}
+.opp-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.opp-bank-logo {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+.opp-bank-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+.opp-bank-type { font-size: 10px; color: var(--text3); }
+.opp-saving {
+  background: var(--green-soft);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.opp-saving-label { font-size: 11px; color: var(--text2); }
+.opp-saving-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 800; color: var(--green2); }
+.opp-saving-mo { font-size: 10px; color: var(--text3); margin-top: 1px; text-align: right; }
+.opp-rates { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text3); margin-bottom: 10px; }
+.rate-old { text-decoration: line-through; color: var(--red); font-weight: 600; }
+.rate-arrow { color: var(--text3); }
+.rate-new { color: var(--green2); font-weight: 700; }
+.opp-btn {
+  width: 100%;
+  padding: 10px;
+  background: var(--navy);
+  color: white;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* notif card */
+.notif-card {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.notif-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  margin-top: 4px;
+  box-shadow: 0 0 8px var(--green-glow);
+}
+.notif-text { font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+.notif-text b { color: var(--green); }
+
+/* ── TAB BAR ── */
+.tabbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0 8px;
+  border-top: 1px solid var(--border);
+  background: white;
+  flex-shrink: 0;
+}
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  opacity: 0.35;
+  cursor: pointer;
+}
+.tab-item.active { opacity: 1; }
+.tab-icon { font-size: 20px; }
+.tab-label { font-size: 9px; font-weight: 700; color: var(--navy); }
+.tab-item.active .tab-label { color: var(--green2); }
+.tab-dot {
+  width: 4px; height: 4px;
+  border-radius: 2px;
+  background: var(--green);
+  display: none;
+}
+.tab-item.active .tab-dot { display: block; }
+
+/* ── FLOW INDICATOR ── */
+.flow-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text3);
+  font-weight: 600;
+}
+.flow-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text3);
+}
+.flow-step.done .flow-num { background: var(--green); color: white; }
+.flow-step.current .flow-num { background: var(--navy); color: white; }
+.flow-arrow { color: var(--text3); font-size: 10px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.phone-wrap { animation: fadeUp .5s both; }
+.phone-wrap:nth-child(1) { animation-delay: 0s; }
+.phone-wrap:nth-child(2) { animation-delay: 0.1s; }
+.phone-wrap:nth-child(3) { animation-delay: 0.2s; }
+.phone-wrap:nth-child(4) { animation-delay: 0.3s; }
+.phone-wrap:nth-child(5) { animation-delay: 0.4s; }
+.phone-wrap:nth-child(6) { animation-delay: 0.5s; }
+
+/* cpf field */
+.cpf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* phone override */
+.screens-wrapper { display: flex !important; gap: 28px; width: max-content; margin: 0 auto; align-items: flex-start; }
 </style>
 </head>
 <body>
@@ -567,6 +1328,7 @@ footer {
     <div class="nav-links">
       <a href="#sobre">Sobre</a>
       <a href="#como-funciona">Como funciona</a>
+      <a href="#app">O App</a>
       <a href="#tecnologia">Tecnologia</a>
       <a href="#contato">Contato</a>
       <a href="https://danielsouzabim-prog.github.io/quitai-landing-page" target="_blank" class="nav-cta">Assinar R$ 5,99 →</a>
@@ -722,6 +1484,568 @@ footer {
         <div class="how-tag">Portabilidade legal · Res. BCB 4.292</div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- MOCKUPS DO APP -->
+<section style="background:rgba(255,255,255,0.015); overflow:hidden;" id="app">
+  <div class="section-inner">
+    <div style="text-align:center" class="fade-up">
+      <div class="eyebrow-sm">O App</div>
+      <h2 class="section-title">Veja o QuitAI<br><span>em ação</span></h2>
+      <p class="section-sub" style="margin:0 auto; max-width:520px">Do cadastro ao radar de oportunidades — um fluxo simples que coloca o poder de negociação na sua mão.</p>
+    </div>
+  </div>
+
+  <!-- PHONE SCREENS -->
+  <div style="overflow-x:auto; padding:48px 24px 32px;">
+
+<div style="display:flex; gap:28px; width:max-content; margin:0 auto; align-items:flex-start;">
+
+  <!-- ══ TELA 1: LOGIN ══ -->
+  <div class="phone-wrap">
+    <div class="phone-label">01 — Cadastro</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content">
+          <div class="login-hero">
+            <svg width="180" height="72" viewBox="0 0 300 88" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:8px">
+              <path d="M 46,18 A 22 22 0 1 0 46,50" fill="none" stroke="#1C2B45" stroke-width="9" stroke-linecap="round"/>
+              <line x1="46" y1="50" x2="51" y2="60" stroke="#1C2B45" stroke-width="9" stroke-linecap="round"/>
+              <polyline points="24,35 34,46 58,14" fill="none" stroke="#3DBE4A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polygon points="58,7 68,18 54,20" fill="#3DBE4A"/>
+              <text x="78" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="#1C2B45">Quit</text>
+              <text x="190" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="#3DBE4A">AI</text>
+            </svg>
+            <div class="login-tagline">Pague menos nas suas dívidas</div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Nome completo</div>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <input class="input-field has-icon" type="text" placeholder="Carlos Silva" value="Carlos Silva">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">E-mail</div>
+            <div class="input-wrap">
+              <span class="input-icon">✉️</span>
+              <input class="input-field has-icon" type="email" placeholder="carlos@email.com" value="carlos@email.com">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Endereço</div>
+            <div class="input-wrap">
+              <span class="input-icon">📍</span>
+              <input class="input-field has-icon" type="text" placeholder="Rua, número, cidade" value="Rua das Flores, 123 — SP">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Senha</div>
+            <div class="input-wrap">
+              <span class="input-icon">🔑</span>
+              <input class="input-field has-icon" type="password" placeholder="••••••••" value="12345678">
+            </div>
+          </div>
+
+          <button class="btn-primary btn-green" style="margin-bottom:12px">Criar conta →</button>
+
+          <div class="divider-row">
+            <div class="divider-line"></div>
+            <div class="divider-text">ou continue com</div>
+            <div class="divider-line"></div>
+          </div>
+
+          <button class="btn-google">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Continuar com Google
+          </button>
+
+          <div style="text-align:center; font-size:10px; color:var(--text3); margin-top:12px; line-height:1.6">
+            Ao criar conta você concorda com os<br>
+            <span style="color:var(--blue); font-weight:600">Termos de Uso</span> e <span style="color:var(--blue); font-weight:600">Política de Privacidade</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TELA 2: BLOQUEADA ══ -->
+  <div class="phone-wrap">
+    <div class="phone-label">02 — Tela Bloqueada</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+
+        <!-- CONTEÚDO BORRADO (dashboard preview) -->
+        <div class="blurred" style="flex:1; padding: 12px 20px; overflow:hidden;">
+          <div class="dash-header">
+            <div><div class="dash-greeting">Bom dia,</div><div class="dash-name">Carlos ✌️</div></div>
+            <div class="avatar">C</div>
+          </div>
+          <div class="balance-card">
+            <div class="balance-label">Saldo total</div>
+            <div class="balance-total">R$ 12.450,00</div>
+            <div class="balance-banks">2 bancos • <span>+R$3.200</span> este mês</div>
+          </div>
+          <div style="height:120px; background:#f0f4ff; border-radius:14px; margin-bottom:10px"></div>
+          <div style="height:80px; background:#f0f4ff; border-radius:14px"></div>
+        </div>
+
+        <!-- OVERLAY LOCK -->
+        <div class="lock-overlay">
+          <div class="lock-icon">🔒</div>
+          <div class="lock-title">Conecte seu primeiro banco</div>
+          <div class="lock-sub">
+            Para liberar todas as funcionalidades do QuitAI, conecte pelo menos um banco via Open Finance. É seguro, rápido e regulamentado pelo Banco Central.
+          </div>
+          <button class="lock-btn">🔗 Conectar banco agora</button>
+          <div style="font-size:10px; color:rgba(255,255,255,0.4); text-align:center">
+            Open Finance · Banco Central · LGPD
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TELA 3: CONECTAR BANCO ══ -->
+  <div class="phone-wrap">
+    <div class="phone-label">03 — Conectar Banco</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content">
+
+          <div style="padding-top:12px; margin-bottom:14px;">
+            <div class="of-badge">🏦 Open Finance · BCB</div>
+            <div class="screen-title">Conecte seu banco</div>
+            <div class="screen-sub">Informe seu CPF e selecione o banco. Você será redirecionado para autorizar via Open Finance.</div>
+          </div>
+
+          <!-- CPF + Banco -->
+          <div class="input-group">
+            <div class="input-label">CPF</div>
+            <div class="input-wrap">
+              <span class="input-icon">🪪</span>
+              <input class="input-field has-icon" type="text" placeholder="000.000.000-00" value="123.456.789-00">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Selecione o banco</div>
+          </div>
+
+          <div class="bank-list">
+            <div class="bank-item selected">
+              <div class="bank-logo" style="background:rgba(0,160,80,0.15); color:#00a050">CE</div>
+              <div class="bank-name">Caixa Econômica Federal</div>
+              <div class="bank-check"><span class="check-mark">✓</span></div>
+            </div>
+            <div class="bank-item">
+              <div class="bank-logo" style="background:rgba(130,0,200,0.15); color:#8200c8">NU</div>
+              <div class="bank-name">Nubank</div>
+              <div class="bank-check"></div>
+            </div>
+            <div class="bank-item">
+              <div class="bank-logo" style="background:rgba(255,102,0,0.15); color:#ff6600">IT</div>
+              <div class="bank-name">Itaú Unibanco</div>
+              <div class="bank-check"></div>
+            </div>
+            <div class="bank-item">
+              <div class="bank-logo" style="background:rgba(204,0,0,0.15); color:#cc0000">BR</div>
+              <div class="bank-name">Bradesco</div>
+              <div class="bank-check"></div>
+            </div>
+            <div class="bank-item">
+              <div class="bank-logo" style="background:rgba(255,204,0,0.15); color:#b38a00">BB</div>
+              <div class="bank-name">Banco do Brasil</div>
+              <div class="bank-check"></div>
+            </div>
+          </div>
+
+          <div class="security-note">
+            <span class="sec-icon">🔒</span>
+            <div class="sec-text">Seus dados são protegidos por criptografia. O QuitAI nunca armazena sua senha. Você pode revogar o acesso a qualquer momento.</div>
+          </div>
+
+          <button class="btn-primary btn-green" style="margin-bottom:8px">Autorizar via Open Finance →</button>
+          <button class="btn-primary btn-outline">+ Adicionar outro banco</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TELA 4: DASHBOARD ══ -->
+  <div class="phone-wrap">
+    <div class="phone-label">04 — Dashboard</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content">
+
+          <div class="dash-header">
+            <div>
+              <div class="dash-greeting">Bom dia,</div>
+              <div class="dash-name">Carlos ✌️</div>
+            </div>
+            <div class="avatar">C</div>
+          </div>
+
+          <!-- Saldo -->
+          <div class="balance-card">
+            <div class="balance-label">Saldo total</div>
+            <div class="balance-total">R$ 12.450,80</div>
+            <div class="balance-banks">Caixa + Nubank · <span>+R$ 3.200 este mês</span></div>
+            <div class="balance-actions">
+              <div class="bal-action">
+                <div class="bal-action-icon">↑</div>
+                <div class="bal-action-label">Enviar</div>
+              </div>
+              <div class="bal-action">
+                <div class="bal-action-icon">↓</div>
+                <div class="bal-action-label">Receber</div>
+              </div>
+              <div class="bal-action">
+                <div class="bal-action-icon">⊕</div>
+                <div class="bal-action-label">Pagar</div>
+              </div>
+              <div class="bal-action">
+                <div class="bal-action-icon">⋯</div>
+                <div class="bal-action-label">Mais</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bancos conectados -->
+          <div class="banks-row">
+            <div class="bank-pill">
+              <div class="bank-pill-logo" style="background:rgba(0,160,80,0.15);color:#00a050">CE</div>
+              <div class="bank-pill-name">Caixa</div>
+            </div>
+            <div class="bank-pill">
+              <div class="bank-pill-logo" style="background:rgba(130,0,200,0.15);color:#8200c8">NU</div>
+              <div class="bank-pill-name">Nubank</div>
+            </div>
+            <div class="bank-pill-add">+ banco</div>
+          </div>
+
+          <!-- Radar toggle -->
+          <div class="radar-toggle">
+            <div class="radar-icon">📡</div>
+            <div class="radar-text">
+              <div class="radar-title">Radar de Oportunidades</div>
+              <div class="radar-sub">Buscar melhores taxas automaticamente</div>
+            </div>
+            <div class="toggle"></div>
+          </div>
+
+          <!-- Últimas transações -->
+          <div class="section-header">
+            <div class="section-title">Últimas transações</div>
+            <div class="section-link">Ver todas</div>
+          </div>
+          <div class="txn-list">
+            <div class="txn-item">
+              <div class="txn-icon" style="background:#FFF0F0">🛒</div>
+              <div class="txn-info">
+                <div class="txn-name">Supermercado Extra</div>
+                <div class="txn-date">Hoje, 09:32 · Caixa</div>
+              </div>
+              <div class="txn-val out">- R$ 287,50</div>
+            </div>
+            <div class="txn-item">
+              <div class="txn-icon" style="background:#F0FFF8">💼</div>
+              <div class="txn-info">
+                <div class="txn-name">Salário</div>
+                <div class="txn-date">Ontem · Nubank</div>
+              </div>
+              <div class="txn-val in">+ R$ 5.200,00</div>
+            </div>
+            <div class="txn-item">
+              <div class="txn-icon" style="background:#F0F4FF">🏠</div>
+              <div class="txn-info">
+                <div class="txn-name">Parcela Financiamento</div>
+                <div class="txn-date">22/03 · Caixa</div>
+              </div>
+              <div class="txn-val out">- R$ 1.120,00</div>
+            </div>
+            <div class="txn-item">
+              <div class="txn-icon" style="background:#FFFBF0">⛽</div>
+              <div class="txn-info">
+                <div class="txn-name">Posto Ipiranga</div>
+                <div class="txn-date">21/03 · Nubank</div>
+              </div>
+              <div class="txn-val out">- R$ 180,00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabbar">
+          <div class="tab-item active">
+            <div class="tab-icon">🏠</div>
+            <div class="tab-label">Início</div>
+            <div class="tab-dot"></div>
+          </div>
+          <div class="tab-item">
+            <div class="tab-icon">💳</div>
+            <div class="tab-label">Extrato</div>
+            <div class="tab-dot"></div>
+          </div>
+          <div class="tab-item">
+            <div class="tab-icon">📡</div>
+            <div class="tab-label">Radar</div>
+            <div class="tab-dot"></div>
+          </div>
+          <div class="tab-item">
+            <div class="tab-icon">📊</div>
+            <div class="tab-label">Saúde</div>
+            <div class="tab-dot"></div>
+          </div>
+          <div class="tab-item">
+            <div class="tab-icon">👤</div>
+            <div class="tab-label">Perfil</div>
+            <div class="tab-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TELA 5: SAÚDE FINANCEIRA ══ -->
+  <div class="phone-wrap">
+    <div class="phone-label">05 — Saúde Financeira</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content">
+
+          <div style="padding-top:12px; margin-bottom:4px;">
+            <div class="screen-title">Saúde Financeira</div>
+            <div class="screen-sub">Visão integrada dos seus 2 bancos</div>
+          </div>
+
+          <!-- Score -->
+          <div class="health-score">
+            <div class="hs-label">Índice de Saúde</div>
+            <div class="hs-score">72</div>
+            <div class="hs-desc">📈 Boa — subiu 4 pontos este mês</div>
+          </div>
+
+          <!-- Métricas -->
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-val">R$ 12.450</div>
+              <div class="metric-lbl">Saldo total</div>
+              <div class="metric-trend up">▲ +R$ 3.200 vs mês ant.</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">R$ 87.400</div>
+              <div class="metric-lbl">Total em dívidas</div>
+              <div class="metric-trend down">▼ -R$ 1.120 pago</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">R$ 2.430</div>
+              <div class="metric-lbl">Gastos este mês</div>
+              <div class="metric-trend up">▲ dentro do limite</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">28%</div>
+              <div class="metric-lbl">Renda comprometida</div>
+              <div class="metric-trend down">⚠️ limite ideal: 30%</div>
+            </div>
+          </div>
+
+          <!-- Saldo por banco -->
+          <div class="section-header">
+            <div class="section-title">Saldo por banco</div>
+          </div>
+          <div class="bank-breakdown">
+            <div class="bb-item">
+              <div class="bb-top">
+                <div class="bank-logo" style="background:rgba(0,160,80,0.12); color:#00a050; width:28px; height:28px; border-radius:8px; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:800">CE</div>
+                <div class="bb-bank">Caixa Econômica</div>
+                <div class="bb-val">R$ 8.230</div>
+              </div>
+              <div class="bb-bar"><div class="bb-fill" style="width:66%; background:#00a050"></div></div>
+            </div>
+            <div class="bb-item">
+              <div class="bb-top">
+                <div class="bank-logo" style="background:rgba(130,0,200,0.12); color:#8200c8; width:28px; height:28px; border-radius:8px; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:800">NU</div>
+                <div class="bb-bank">Nubank</div>
+                <div class="bb-val">R$ 4.220</div>
+              </div>
+              <div class="bb-bar"><div class="bb-fill" style="width:34%; background:#8200c8"></div></div>
+            </div>
+          </div>
+
+          <!-- Radar CTA -->
+          <div class="radar-toggle" style="margin-top:4px">
+            <div class="radar-icon">📡</div>
+            <div class="radar-text">
+              <div class="radar-title">Habilitar Radar</div>
+              <div class="radar-sub">Encontrar oportunidades de economia</div>
+            </div>
+            <div class="toggle"></div>
+          </div>
+
+        </div>
+
+        <div class="tabbar">
+          <div class="tab-item"><div class="tab-icon">🏠</div><div class="tab-label">Início</div><div class="tab-dot"></div></div>
+          <div class="tab-item"><div class="tab-icon">💳</div><div class="tab-label">Extrato</div><div class="tab-dot"></div></div>
+          <div class="tab-item"><div class="tab-icon">📡</div><div class="tab-label">Radar</div><div class="tab-dot"></div></div>
+          <div class="tab-item active"><div class="tab-icon">📊</div><div class="tab-label">Saúde</div><div class="tab-dot"></div></div>
+          <div class="tab-item"><div class="tab-icon">👤</div><div class="tab-label">Perfil</div><div class="tab-dot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TELA 6: RADAR DE OPORTUNIDADES ══ -->
+  <div class="phone-wrap">
+    <div class="phone-label">06 — Radar de Oportunidades</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content">
+
+          <!-- Notificação push simulada -->
+          <div class="notif-card" style="margin-top:12px">
+            <div class="notif-dot"></div>
+            <div class="notif-text">
+              📡 <b>Radar encontrou algo!</b> O Itaú pode reduzir sua parcela do financiamento em <b>R$ 287/mês</b>. Toque para ver.
+            </div>
+          </div>
+
+          <!-- Radar hero -->
+          <div class="radar-hero">
+            <div class="radar-pulse">
+              <div class="radar-emoji">📡</div>
+            </div>
+            <div class="radar-hero-title">Radar Ativo</div>
+            <div class="radar-hero-sub">Analisando 2 bancos · 4 dívidas · Mercado em tempo real</div>
+          </div>
+
+          <!-- Oportunidades -->
+          <div class="section-header" style="margin-top:4px">
+            <div class="section-title">Oportunidades encontradas</div>
+            <div class="section-link">3 novas</div>
+          </div>
+
+          <div class="opp-list">
+
+            <div class="opp-card new">
+              <div class="opp-top">
+                <div class="opp-bank-logo" style="background:rgba(255,102,0,0.12); color:#ff6600">IT</div>
+                <div>
+                  <div class="opp-bank-name">Itaú Unibanco</div>
+                  <div class="opp-bank-type">Portabilidade · Financiamento Imobiliário</div>
+                </div>
+              </div>
+              <div class="opp-saving">
+                <div>
+                  <div class="opp-saving-label">Você economiza</div>
+                  <div class="opp-saving-val">R$ 287/mês</div>
+                  <div class="opp-saving-mo">R$ 51.660 no total</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:10px; color:var(--text3)">Parcela atual</div>
+                  <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:15px; font-weight:700; color:var(--red); text-decoration:line-through">R$ 1.120</div>
+                  <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:15px; font-weight:700; color:var(--green2)">R$ 833</div>
+                </div>
+              </div>
+              <div class="opp-rates">
+                <span class="rate-old">9,8% a.a.</span>
+                <span class="rate-arrow">→</span>
+                <span class="rate-new">7,2% a.a.</span>
+                <span style="margin-left:auto; background:var(--green-soft); color:var(--green2); font-size:9px; font-weight:700; padding:2px 8px; border-radius:99px">MELHOR OFERTA</span>
+              </div>
+              <button class="opp-btn">Ver proposta completa →</button>
+            </div>
+
+            <div class="opp-card">
+              <div class="opp-top">
+                <div class="opp-bank-logo" style="background:rgba(255,204,0,0.12); color:#b38a00">BB</div>
+                <div>
+                  <div class="opp-bank-name">Banco do Brasil</div>
+                  <div class="opp-bank-type">Portabilidade · Cartão de Crédito</div>
+                </div>
+              </div>
+              <div class="opp-saving">
+                <div>
+                  <div class="opp-saving-label">Você economiza</div>
+                  <div class="opp-saving-val">R$ 142/mês</div>
+                  <div class="opp-saving-mo">R$ 1.704 no total</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:10px; color:var(--text3)">Parcela atual</div>
+                  <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:15px; font-weight:700; color:var(--red); text-decoration:line-through">R$ 630</div>
+                  <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:15px; font-weight:700; color:var(--green2)">R$ 488</div>
+                </div>
+              </div>
+              <div class="opp-rates">
+                <span class="rate-old">12,5% a.m.</span>
+                <span class="rate-arrow">→</span>
+                <span class="rate-new">9,8% a.m.</span>
+              </div>
+              <button class="opp-btn">Ver proposta completa →</button>
+            </div>
+
+            <div class="opp-card">
+              <div class="opp-top">
+                <div class="opp-bank-logo" style="background:rgba(255,109,0,0.12); color:#FF6D00">IN</div>
+                <div>
+                  <div class="opp-bank-name">Inter</div>
+                  <div class="opp-bank-type">Portabilidade · Empréstimo Pessoal</div>
+                </div>
+              </div>
+              <div class="opp-saving">
+                <div>
+                  <div class="opp-saving-label">Você economiza</div>
+                  <div class="opp-saving-val">R$ 89/mês</div>
+                  <div class="opp-saving-mo">R$ 3.204 no total</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:10px; color:var(--text3)">Parcela atual</div>
+                  <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:15px; font-weight:700; color:var(--red); text-decoration:line-through">R$ 520</div>
+                  <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:15px; font-weight:700; color:var(--green2)">R$ 431</div>
+                </div>
+              </div>
+              <div class="opp-rates">
+                <span class="rate-old">3,2% a.m.</span>
+                <span class="rate-arrow">→</span>
+                <span class="rate-new">2,5% a.m.</span>
+              </div>
+              <button class="opp-btn">Ver proposta completa →</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="tabbar">
+          <div class="tab-item"><div class="tab-icon">🏠</div><div class="tab-label">Início</div><div class="tab-dot"></div></div>
+          <div class="tab-item"><div class="tab-icon">💳</div><div class="tab-label">Extrato</div><div class="tab-dot"></div></div>
+          <div class="tab-item active"><div class="tab-icon">📡</div><div class="tab-label">Radar</div><div class="tab-dot"></div></div>
+          <div class="tab-item"><div class="tab-icon">📊</div><div class="tab-label">Saúde</div><div class="tab-dot"></div></div>
+          <div class="tab-item"><div class="tab-icon">👤</div><div class="tab-label">Perfil</div><div class="tab-dot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
   </div>
 </section>
 
