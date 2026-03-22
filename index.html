@@ -3,109 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuitAI — Pague menos nas suas dívidas</title>
+<title>QuitAI — Inteligência Artificial para suas dívidas</title>
+<meta name="description" content="QuitAI usa IA e Open Finance para encontrar propostas de outros bancos com taxas menores para suas dívidas.">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --navy: #1C2B45;
-  --navy2: #0f1e33;
+  --navy: #0D1B2E;
+  --navy2: #0A1520;
+  --navy3: #111E33;
   --green: #3DBE4A;
   --green2: #2DA331;
-  --green-soft: rgba(61,190,74,0.12);
-  --green-glow: rgba(61,190,74,0.3);
-  --bg: #F4F7FF;
-  --white: #ffffff;
-  --text: #1C2B45;
-  --text2: #4A5A72;
-  --text3: #8A9BB8;
-  --border: rgba(28,43,69,0.1);
-  --shadow: 0 4px 24px rgba(28,43,69,0.08);
-  --shadow-lg: 0 16px 56px rgba(28,43,69,0.14);
+  --green-soft: rgba(61,190,74,0.1);
+  --green-glow: rgba(61,190,74,0.25);
+  --blue: #1A6BF5;
+  --text: #E8F0FF;
+  --text2: #7A93BF;
+  --text3: #3F567A;
+  --border: rgba(255,255,255,0.07);
+  --card: rgba(255,255,255,0.04);
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--bg);
+  background: var(--navy2);
   color: var(--text);
   overflow-x: hidden;
 }
-
-/* ── LOGO SVG ── */
-.logo-svg { display: block; }
 
 /* ── NAV ── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
+  padding: 0 32px;
+  background: rgba(10,21,32,0.85);
+  backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  padding: 0 24px;
 }
 .nav-inner {
   max-width: 1100px;
   margin: 0 auto;
-  height: 64px;
+  height: 66px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--text); }
 .nav-cta {
   background: var(--green);
-  color: white;
+  color: white !important;
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 10px 22px;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 9px 20px;
   border-radius: 99px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .2s, transform .2s;
+  transition: background .2s, transform .2s !important;
 }
-.nav-cta:hover { background: var(--green2); transform: translateY(-1px); }
+.nav-cta:hover { background: var(--green2) !important; transform: translateY(-1px); }
 
 /* ── HERO ── */
 .hero {
   min-height: 100vh;
-  background: var(--navy2);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 100px 24px 80px;
+  padding: 120px 24px 80px;
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(61,190,74,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(61,190,74,0.08) 0%, transparent 60%);
-}
-/* grid lines */
+
+/* animated grid */
 .hero-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(61,190,74,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61,190,74,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: gridMove 20s linear infinite;
 }
-.hero-content { position: relative; z-index: 2; max-width: 780px; }
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 80px 80px; }
+}
 
-.hero-badge {
+/* glowing orbs */
+.orb1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(61,190,74,0.12) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation: float1 8s ease-in-out infinite;
+}
+.orb2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,107,245,0.1) 0%, transparent 70%);
+  bottom: -100px; right: -100px;
+  animation: float2 10s ease-in-out infinite;
+}
+@keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+@keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-40px)} }
+
+.hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+.hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(61,190,74,0.15);
-  border: 1px solid rgba(61,190,74,0.3);
+  background: rgba(61,190,74,0.1);
+  border: 1px solid rgba(61,190,74,0.25);
   border-radius: 99px;
   padding: 6px 16px;
   font-size: 12px;
@@ -114,120 +140,160 @@ nav {
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 28px;
-  animation: fadeDown .6s both;
+  animation: fadeDown .7s both;
 }
-.badge-dot {
+.eyebrow-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--green);
-  animation: blink 1.5s infinite;
+  animation: blink 2s infinite;
 }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
 .hero h1 {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(36px, 6vw, 72px);
+  font-size: clamp(40px, 6.5vw, 78px);
   font-weight: 800;
-  color: white;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 20px;
-  animation: fadeDown .6s .1s both;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  animation: fadeDown .7s .1s both;
 }
-.hero h1 span { color: var(--green); }
+.hero h1 .line2 { color: var(--green); }
 
 .hero-sub {
-  font-size: clamp(15px, 2vw, 19px);
-  color: rgba(255,255,255,0.6);
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text2);
   line-height: 1.7;
-  max-width: 560px;
-  margin: 0 auto 40px;
-  animation: fadeDown .6s .2s both;
+  max-width: 580px;
+  margin: 0 auto 48px;
+  animation: fadeDown .7s .2s both;
 }
-
-.hero-price {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
-  padding: 20px 36px;
-  margin-bottom: 32px;
-  animation: fadeDown .6s .3s both;
-}
-.price-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-.price-val {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 52px;
-  font-weight: 800;
-  color: white;
-  line-height: 1;
-}
-.price-val span { font-size: 22px; color: rgba(255,255,255,0.6); vertical-align: super; }
-.price-val em { font-size: 18px; font-style: normal; color: rgba(255,255,255,0.5); }
-.price-note { font-size: 12px; color: var(--green); font-weight: 600; margin-top: 4px; }
 
 .hero-btns {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
-  animation: fadeDown .6s .4s both;
+  animation: fadeDown .7s .3s both;
 }
-.btn-hero {
-  padding: 16px 36px;
+.btn {
+  padding: 15px 32px;
   border-radius: 14px;
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  cursor: pointer;
-  border: none;
   text-decoration: none;
   transition: all .2s;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
+  border: none;
 }
-.btn-hero-primary {
+.btn-primary {
   background: var(--green);
   color: white;
   box-shadow: 0 8px 32px var(--green-glow);
 }
-.btn-hero-primary:hover { background: var(--green2); transform: translateY(-2px); box-shadow: 0 12px 40px var(--green-glow); }
-.btn-hero-ghost {
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.8);
-  border: 1px solid rgba(255,255,255,0.15);
+.btn-primary:hover { background: var(--green2); transform: translateY(-2px); box-shadow: 0 12px 40px var(--green-glow); }
+.btn-ghost {
+  background: rgba(255,255,255,0.06);
+  color: var(--text2);
+  border: 1px solid var(--border);
 }
-.btn-hero-ghost:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+.btn-ghost:hover { background: rgba(255,255,255,0.1); color: var(--text); transform: translateY(-2px); }
 
-/* ── SOCIAL PROOF ── */
-.social-proof {
-  background: white;
-  border-top: 1px solid var(--border);
-  padding: 20px 24px;
+/* floating phone mockup */
+.hero-visual {
+  margin-top: 64px;
+  animation: fadeDown .7s .4s both;
+  position: relative;
+  display: inline-block;
 }
-.sp-inner {
+.phone-mockup {
+  width: 240px;
+  height: 480px;
+  background: var(--navy3);
+  border-radius: 36px;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 60px var(--green-glow);
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+.phone-notch { width: 70px; height: 20px; background: var(--navy2); border-radius: 0 0 14px 14px; margin: 0 auto; }
+.phone-content { padding: 12px 14px; }
+.phone-bal-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; }
+.phone-bal-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 800; color: white; margin: 2px 0 12px; }
+.phone-radar {
+  background: linear-gradient(135deg, rgba(61,190,74,0.15), rgba(61,190,74,0.05));
+  border: 1px solid rgba(61,190,74,0.25);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.radar-pulse-sm {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(61,190,74,0.15);
+  border: 1.5px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  animation: pulse-sm 2s infinite;
+}
+@keyframes pulse-sm { 0%,100%{box-shadow:0 0 0 0 var(--green-glow)} 50%{box-shadow:0 0 0 8px transparent} }
+.radar-txt-title { font-size: 10px; font-weight: 700; color: white; }
+.radar-txt-sub { font-size: 9px; color: var(--text2); }
+.phone-opp {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+}
+.opp-bank { font-size: 9px; font-weight: 700; color: var(--text2); margin-bottom: 3px; }
+.opp-saving { font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; font-weight: 800; color: var(--green); }
+.opp-mo { font-size: 8px; color: var(--text3); }
+
+/* ── TRUSTED BY ── */
+.trusted {
+  padding: 28px 24px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+.trusted-inner {
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 48px;
   flex-wrap: wrap;
 }
-.sp-item { display: flex; align-items: center; gap: 8px; }
-.sp-icon { font-size: 18px; }
-.sp-text { font-size: 13px; font-weight: 600; color: var(--text2); }
+.trusted-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text3);
+}
+.trusted-item span { font-size: 18px; }
 
-/* ── SECTION ── */
-section { padding: 80px 24px; }
+/* ── SECTIONS ── */
+section { padding: 100px 24px; }
 .section-inner { max-width: 1100px; margin: 0 auto; }
-.section-badge {
+
+.eyebrow-sm {
   display: inline-block;
   background: var(--green-soft);
-  color: var(--green2);
+  color: var(--green);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -238,334 +304,250 @@ section { padding: 80px 24px; }
 }
 .section-title {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(26px, 4vw, 42px);
+  font-size: clamp(28px, 4vw, 48px);
   font-weight: 800;
-  color: var(--navy);
-  line-height: 1.15;
+  line-height: 1.1;
   letter-spacing: -0.5px;
-  margin-bottom: 14px;
-}
-.section-title span { color: var(--green2); }
-.section-sub { font-size: 16px; color: var(--text2); line-height: 1.7; max-width: 540px; }
-
-/* ── HOW IT WORKS ── */
-.how-bg { background: white; }
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-  margin-top: 48px;
-}
-.step-card {
-  background: var(--bg);
-  border-radius: 20px;
-  padding: 28px 24px;
-  position: relative;
-  transition: transform .2s, box-shadow .2s;
-}
-.step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-.step-num {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 42px;
-  font-weight: 800;
-  color: var(--green);
-  opacity: 0.2;
-  line-height: 1;
-  margin-bottom: 12px;
-}
-.step-icon { font-size: 32px; margin-bottom: 14px; }
-.step-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-.step-desc { font-size: 14px; color: var(--text2); line-height: 1.6; }
-
-/* ── FEATURES ── */
-.features-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 48px;
-}
-@media(max-width:640px){ .features-grid { grid-template-columns: 1fr; } }
-.feature-card {
-  background: white;
-  border-radius: 20px;
-  padding: 28px;
-  border: 1px solid var(--border);
-  transition: border-color .2s, transform .2s;
-}
-.feature-card:hover { border-color: var(--green); transform: translateY(-3px); }
-.feature-card.full { grid-column: 1 / -1; background: var(--navy); color: white; }
-.fc-icon {
-  width: 48px; height: 48px;
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
   margin-bottom: 16px;
 }
-.fc-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-.fc-desc { font-size: 14px; color: var(--text2); line-height: 1.6; }
-.feature-card.full .fc-desc { color: rgba(255,255,255,0.6); }
-.feature-card.full .fc-title { color: white; }
+.section-title span { color: var(--green); }
+.section-sub { font-size: 16px; color: var(--text2); line-height: 1.7; max-width: 520px; }
 
-/* ── SAVINGS COUNTER ── */
-.savings-section {
-  background: var(--navy);
-  text-align: center;
-  padding: 80px 24px;
-}
-.savings-grid {
+/* ── ABOUT / MISSION ── */
+.about-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 32px;
-  max-width: 900px;
-  margin: 48px auto 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
 }
-.saving-item {}
-.saving-val {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--green);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-.saving-lbl { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 500; }
+@media(max-width:768px){ .about-grid { grid-template-columns: 1fr; gap: 40px; } }
 
-/* ── TESTIMONIALS ── */
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-top: 48px;
-}
-.testi-card {
-  background: white;
-  border-radius: 20px;
-  padding: 24px;
-  border: 1px solid var(--border);
-}
-.testi-stars { color: var(--green); font-size: 16px; margin-bottom: 12px; letter-spacing: 2px; }
-.testi-text { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
-.testi-author { display: flex; align-items: center; gap: 10px; }
-.testi-avatar {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  font-weight: 700;
-  color: white;
-  font-family: 'Bricolage Grotesque', sans-serif;
-}
-.testi-name { font-size: 13px; font-weight: 700; color: var(--navy); }
-.testi-role { font-size: 11px; color: var(--text3); }
-
-/* ── PIX SECTION ── */
-.pix-section {
-  background: var(--navy2);
-  padding: 80px 24px;
-}
-.pix-inner {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-.pix-card {
-  background: white;
-  border-radius: 28px;
-  padding: 40px;
-  margin-top: 40px;
-  box-shadow: var(--shadow-lg);
-}
-.pix-price-box {
-  background: var(--green-soft);
-  border: 2px solid var(--green);
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 28px;
-}
-.pix-price-label { font-size: 12px; font-weight: 700; color: var(--green2); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-.pix-price-val {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--navy);
-  line-height: 1;
-}
-.pix-price-val span { font-size: 20px; vertical-align: super; }
-.pix-price-val em { font-size: 16px; font-style: normal; color: var(--text2); }
-.pix-price-note { font-size: 12px; color: var(--green2); font-weight: 600; margin-top: 4px; }
-
-.pix-qr-wrap {
+.about-visual {
   display: flex;
   flex-direction: column;
+  gap: 14px;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px 24px;
+  display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 28px;
+  transition: border-color .2s, transform .2s;
 }
-.pix-qr {
-  width: 200px; height: 200px;
-  border-radius: 16px;
-  border: 3px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  padding: 12px;
-}
-/* QR code simulado com SVG */
-.qr-svg { width: 100%; height: 100%; }
-
-.pix-qr-label { font-size: 13px; color: var(--text3); font-weight: 500; }
-
-.pix-key-box {
-  background: var(--bg);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  transition: border-color .2s;
-}
-.pix-key-box:hover { border-color: var(--green); }
-.pix-key-left {}
-.pix-key-type { font-size: 10px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; }
-.pix-key-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); margin-top: 2px; }
-.pix-copy-btn {
-  background: var(--navy);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 18px;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background .2s;
-  white-space: nowrap;
-}
-.pix-copy-btn:hover { background: var(--green); }
-.pix-copy-btn.copied { background: var(--green); }
-
-.pix-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: left;
-  margin-bottom: 24px;
-}
-.pix-step {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  color: var(--text2);
-}
-.pix-step-num {
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  background: var(--green-soft);
-  border: 1.5px solid var(--green);
+.stat-card:hover { border-color: var(--green); transform: translateX(6px); }
+.stat-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--green2);
+  font-size: 22px;
   flex-shrink: 0;
 }
+.stat-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 800; color: var(--green); }
+.stat-lbl { font-size: 12px; color: var(--text2); margin-top: 1px; }
 
-.pix-after {
-  background: var(--bg);
-  border-radius: 12px;
-  padding: 14px 16px;
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.6;
-  text-align: left;
-}
-.pix-after b { color: var(--navy); }
-
-.whatsapp-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 16px;
-  background: #25D366;
-  color: white;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  margin-top: 16px;
-  transition: background .2s, transform .2s;
-}
-.whatsapp-btn:hover { background: #1ebe5d; transform: translateY(-2px); }
-
-/* ── FAQ ── */
-.faq-list { max-width: 680px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 12px; }
-.faq-item {
-  background: white;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  cursor: pointer;
-}
-.faq-q {
-  padding: 18px 20px;
-  font-weight: 700;
+.mission-quote {
+  background: linear-gradient(135deg, rgba(61,190,74,0.08), rgba(61,190,74,0.02));
+  border: 1px solid rgba(61,190,74,0.2);
+  border-left: 4px solid var(--green);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+  margin-top: 24px;
   font-size: 15px;
-  color: var(--navy);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-.faq-icon { font-size: 18px; color: var(--green); transition: transform .2s; flex-shrink: 0; }
-.faq-a {
-  padding: 0 20px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .3s, padding .3s;
-  font-size: 14px;
   color: var(--text2);
   line-height: 1.7;
+  font-style: italic;
 }
-.faq-item.open .faq-a { max-height: 200px; padding: 0 20px 18px; }
-.faq-item.open .faq-icon { transform: rotate(45deg); }
+.mission-quote strong { color: var(--text); font-style: normal; }
+
+/* ── HOW IT WORKS ── */
+.how-bg { background: rgba(255,255,255,0.015); }
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+@media(max-width:768px){ .how-grid { grid-template-columns: 1fr; } }
+
+.how-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s, transform .2s;
+}
+.how-card:hover { border-color: var(--green); transform: translateY(-6px); }
+.how-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.how-card:hover::before { opacity: 1; }
+.how-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--green);
+  opacity: 0.12;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.how-icon { font-size: 36px; margin-bottom: 16px; }
+.how-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.how-desc { font-size: 14px; color: var(--text2); line-height: 1.7; }
+.how-tag {
+  display: inline-block;
+  margin-top: 16px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 99px;
+  letter-spacing: 0.5px;
+}
+
+/* ── TECH STACK ── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 56px;
+}
+@media(max-width:640px){ .tech-grid { grid-template-columns: 1fr; } }
+
+.tech-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.tech-card:hover { border-color: rgba(61,190,74,0.3); }
+.tech-card.featured {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(61,190,74,0.08), rgba(26,107,245,0.05));
+  border-color: rgba(61,190,74,0.2);
+}
+.tech-icon { font-size: 32px; margin-bottom: 12px; }
+.tech-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.tech-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.tech-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+.tech-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
+
+/* ── CONTACT ── */
+.contact-section { text-align: center; }
+.contact-card {
+  background: linear-gradient(135deg, rgba(61,190,74,0.08), rgba(13,27,46,0.5));
+  border: 1px solid rgba(61,190,74,0.2);
+  border-radius: 28px;
+  padding: 60px 40px;
+  max-width: 680px;
+  margin: 48px auto 0;
+  position: relative;
+  overflow: hidden;
+}
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(61,190,74,0.3), transparent, rgba(26,107,245,0.2));
+  z-index: -1;
+}
+.contact-icon { font-size: 48px; margin-bottom: 16px; }
+.contact-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 10px; }
+.contact-sub { font-size: 15px; color: var(--text2); line-height: 1.7; margin-bottom: 32px; }
+.contact-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all .2s;
+}
+.btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
 
 /* ── FOOTER ── */
 footer {
   background: var(--navy2);
-  padding: 40px 24px;
-  text-align: center;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--border);
+  padding: 48px 24px 32px;
 }
-.footer-inner { max-width: 1100px; margin: 0 auto; }
-.footer-tagline { font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 12px; line-height: 1.7; }
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.footer-brand { max-width: 280px; }
+.footer-tagline { font-size: 13px; color: var(--text3); line-height: 1.7; margin-top: 12px; }
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 13px; color: var(--text2); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--green); }
+.footer-links-title { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copy { font-size: 12px; color: var(--text3); }
+.footer-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.footer-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
 
 /* ── ANIMATIONS ── */
 @keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-16px); }
+  from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fade-up { opacity: 0; transform: translateY(24px); transition: opacity .6s, transform .6s; }
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity .7s, transform .7s; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE NAV ── */
 @media(max-width:640px){
-  .sp-inner { gap: 20px; }
+  .nav-links { display: none; }
   .hero-btns { flex-direction: column; align-items: center; }
-  .btn-hero { width: 100%; justify-content: center; }
+  .btn { width: 100%; justify-content: center; }
 }
 </style>
 </head>
@@ -574,285 +556,362 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <svg class="logo-svg" width="110" height="32" viewBox="0 0 300 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 46,18 A 22 22 0 1 0 46,50" fill="none" stroke="#1C2B45" stroke-width="9" stroke-linecap="round"/>
-      <line x1="46" y1="50" x2="51" y2="60" stroke="#1C2B45" stroke-width="9" stroke-linecap="round"/>
+    <svg width="110" height="32" viewBox="0 0 300 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 46,18 A 22 22 0 1 0 46,50" fill="none" stroke="#E8F0FF" stroke-width="9" stroke-linecap="round"/>
+      <line x1="46" y1="50" x2="51" y2="60" stroke="#E8F0FF" stroke-width="9" stroke-linecap="round"/>
       <polyline points="24,35 34,46 58,14" fill="none" stroke="#3DBE4A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
       <polygon points="58,7 68,18 54,20" fill="#3DBE4A"/>
-      <text x="78" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="#1C2B45">Quit</text>
+      <text x="78" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="#E8F0FF">Quit</text>
       <text x="190" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="#3DBE4A">AI</text>
     </svg>
-    <a href="#assinar" class="nav-cta">Assinar por R$ 5,99 →</a>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#tecnologia">Tecnologia</a>
+      <a href="#contato">Contato</a>
+      <a href="https://danielsouzabim-prog.github.io/quitai-landing-page" target="_blank" class="nav-cta">Assinar R$ 5,99 →</a>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
   <div class="hero-grid"></div>
+  <div class="orb1"></div>
+  <div class="orb2"></div>
   <div class="hero-content">
-    <div class="hero-badge">
-      <div class="badge-dot"></div>
-      Inteligência Artificial + Open Finance
+    <div class="hero-eyebrow">
+      <div class="eyebrow-dot"></div>
+      IA + Open Finance + Portabilidade de Crédito
     </div>
-    <h1>Você pode estar pagando<br><span>21x mais</span><br>do que o necessário</h1>
-    <p class="hero-sub">O cartão rotativo chega a 440% ao ano. O QuitAI analisa seus contratos, identifica onde o banco está lucrando excessivamente e encontra a proposta certa para você pagar menos — ainda este mês.</p>
-
-    <div class="hero-price">
-      <div class="price-label">Acesso completo por apenas</div>
-      <div class="price-val"><span>R$</span>5<em>,99/mês</em></div>
-      <div class="price-note">✓ Cancele quando quiser · Via Pix</div>
-      <div style="margin-top:10px; background:rgba(255,186,59,0.12); border:1px solid rgba(255,186,59,0.3); border-radius:10px; padding:10px 16px; font-size:13px; color:rgba(255,255,255,0.8); line-height:1.6;">
-        ⚠️ <strong style="color:#FFBA3B">Aviso:</strong> Este pagamento faz parte do processo de validação da nossa startup. O valor de <strong style="color:#FFBA3B">R$ 5,99 será devolvido amanhã</strong> para todos os participantes.
-      </div>
-    </div>
-
+    <h1>
+      Você pode estar pagando<br>
+      <span class="line2">21x mais do que o necessário</span>
+    </h1>
+    <p class="hero-sub">O QuitAI analisa seus contratos atuais e encontra onde o banco está lucrando excessivamente. Nós não te damos crédito — nós recuperamos o seu poder de compra trocando juros caros por juros justos.</p>
     <div class="hero-btns">
-      <a href="#assinar" class="btn-hero btn-hero-primary">💸 Assinar agora por R$ 5,99</a>
-      <a href="#como-funciona" class="btn-hero btn-hero-ghost">Ver como funciona</a>
+      <a href="https://danielsouzabim-prog.github.io/quitai-landing-page" target="_blank" class="btn btn-primary">💸 Começar por R$ 5,99/mês</a>
+      <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-content">
+          <div class="phone-bal-label">Saldo total</div>
+          <div class="phone-bal-val">R$ 12.450</div>
+          <div class="phone-radar">
+            <div class="radar-pulse-sm">📡</div>
+            <div>
+              <div class="radar-txt-title">Radar Ativo</div>
+              <div class="radar-txt-sub">3 oportunidades encontradas</div>
+            </div>
+          </div>
+          <div class="phone-opp">
+            <div class="opp-bank">★ ITAÚ · Financiamento Imob.</div>
+            <div class="opp-saving">- R$ 287/mês</div>
+            <div class="opp-mo">9,8% → 7,2% a.a. · Economize R$ 51k</div>
+          </div>
+          <div class="phone-opp">
+            <div class="opp-bank">BANCO DO BRASIL · Cartão</div>
+            <div class="opp-saving">- R$ 142/mês</div>
+            <div class="opp-mo">12,5% → 9,8% a.m.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SOCIAL PROOF BAR -->
-<div class="social-proof">
-  <div class="sp-inner">
-    <div class="sp-item"><span class="sp-icon">🏦</span><span class="sp-text">Open Finance regulamentado pelo Banco Central</span></div>
-    <div class="sp-item"><span class="sp-icon">🔒</span><span class="sp-text">Seus dados protegidos pela LGPD</span></div>
-    <div class="sp-item"><span class="sp-icon">🤖</span><span class="sp-text">IA analisa o mercado em tempo real</span></div>
-    <div class="sp-item"><span class="sp-icon">⚡</span><span class="sp-text">Portabilidade em até 3 dias úteis</span></div>
+<!-- TRUSTED -->
+<div class="trusted">
+  <div class="trusted-inner">
+    <div class="trusted-item"><span>🏦</span>Open Finance · BCB</div>
+    <div class="trusted-item"><span>🔒</span>Protegido pela LGPD</div>
+    <div class="trusted-item"><span>⚡</span>Portabilidade em 3 dias</div>
+    <div class="trusted-item"><span>🤖</span>IA em tempo real</div>
+    <div class="trusted-item"><span>🇧🇷</span>100% brasileiro</div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
+<!-- SOBRE / MISSÃO -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="fade-up">
+        <div class="eyebrow-sm">Nossa missão</div>
+        <h2 class="section-title">Nenhum brasileiro deveria pagar<br><span>juros desnecessários</span></h2>
+        <p class="section-sub">78% das famílias brasileiras estão endividadas. O cartão rotativo chega a 440% ao ano — 21x mais caro que o consignado. As pessoas sentem que pagam caro, mas não sabem o que fazer. O QuitAI nasceu para resolver isso.</p>
+        <div class="mission-quote">
+          "O problema não é só a dívida. É que as pessoas estão presas em juros altos sem saber que podem pagar menos. O brasileiro vive numa prisão financeira — paga os maiores juros do mundo, não sabe como sair e esbarra em burocracia absurda se tentar trocar de banco."
+        </div>
+        <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text2);">
+            <span style="color:var(--green); font-size:18px">✓</span> <strong style="color:var(--text)">88,9%</strong> dos entrevistados nunca revisaram suas dívidas após contratar
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text2);">
+            <span style="color:var(--green); font-size:18px">✓</span> <strong style="color:var(--text)">77,8%</strong> sentem que pagam caro, mas não sabem o que fazer
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text2);">
+            <span style="color:var(--green); font-size:18px">✓</span> <strong style="color:var(--text)">66,7%</strong> não sabem como agir ou por onde começar
+          </div>
+        </div>
+      </div>
+      <div class="about-visual fade-up">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(255,92,106,0.1)">📈</div>
+          <div>
+            <div class="stat-val">440%</div>
+            <div class="stat-lbl">ao ano — taxa do rotativo do cartão de crédito</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(61,190,74,0.1)">🏦</div>
+          <div>
+            <div class="stat-val">78%</div>
+            <div class="stat-lbl">das famílias brasileiras têm algum tipo de dívida</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(26,107,245,0.1)">📱</div>
+          <div>
+            <div class="stat-val">40mi+</div>
+            <div class="stat-lbl">consentimentos ativos no Open Finance (BCB)</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(255,186,59,0.1)">⚡</div>
+          <div>
+            <div class="stat-val">3 dias</div>
+            <div class="stat-lbl">para concluir portabilidade de crédito digitalmente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
 <section class="how-bg" id="como-funciona">
   <div class="section-inner">
-    <div style="text-align:center; margin-bottom:8px">
-      <div class="section-badge">Como funciona</div>
+    <div style="text-align:center" class="fade-up">
+      <div class="eyebrow-sm">Como funciona</div>
+      <h2 class="section-title">De dívida cara a taxa menor<br><span>em 3 passos</span></h2>
     </div>
-    <h2 class="section-title" style="text-align:center">Em 3 passos você já<br><span>começa a economizar</span></h2>
-    <div class="steps-grid">
-      <div class="step-card fade-up">
-        <div class="step-num">01</div>
-        <div class="step-icon">🔗</div>
-        <div class="step-title">Conecte seus bancos</div>
-        <div class="step-desc">Via Open Finance, com segurança total. O QuitAI lê suas dívidas, taxas e parcelas automaticamente. Sem senha, sem burocracia.</div>
+    <div class="how-grid">
+      <div class="how-card fade-up">
+        <div class="how-num">01</div>
+        <div class="how-icon">🔗</div>
+        <div class="how-title">Conecte seus bancos</div>
+        <div class="how-desc">Via Open Finance regulamentado pelo Banco Central. O QuitAI importa suas dívidas automaticamente — sem senha, sem burocracia. Você controla tudo.</div>
+        <div class="how-tag">Open Finance · BCB</div>
       </div>
-      <div class="step-card fade-up">
-        <div class="step-num">02</div>
-        <div class="step-icon">📡</div>
-        <div class="step-title">Ative o Radar</div>
-        <div class="step-desc">Nossa IA varre o mercado comparando sua taxa atual com as ofertas dos bancos parceiros e encontra onde você pode pagar menos.</div>
+      <div class="how-card fade-up">
+        <div class="how-num">02</div>
+        <div class="how-icon">🤖</div>
+        <div class="how-title">IA analisa o mercado</div>
+        <div class="how-desc">Nossa inteligência artificial analisa seu perfil de crédito, compara sua taxa com o mercado em tempo real e gera propostas personalizadas de portabilidade.</div>
+        <div class="how-tag">Claude AI · Tempo real</div>
       </div>
-      <div class="step-card fade-up">
-        <div class="step-num">03</div>
-        <div class="step-icon">✅</div>
-        <div class="step-title">Aceite a melhor proposta</div>
-        <div class="step-desc">Com 1 toque você aceita a portabilidade. O banco novo assume sua dívida com taxa menor. Você passa a pagar menos todo mês.</div>
+      <div class="how-card fade-up">
+        <div class="how-num">03</div>
+        <div class="how-icon">✅</div>
+        <div class="how-title">Aceite e economize</div>
+        <div class="how-desc">Com 1 toque você aceita a melhor proposta. O banco novo assume sua dívida com taxa menor — você passa a pagar menos todo mês automaticamente.</div>
+        <div class="how-tag">Portabilidade legal · Res. BCB 4.292</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section style="background:var(--bg)">
+<!-- VALIDAÇÃO -->
+<section style="background:rgba(255,255,255,0.015)" id="validacao">
   <div class="section-inner">
-    <div class="section-badge">Funcionalidades</div>
-    <h2 class="section-title">Tudo que você precisa<br><span>em um único app</span></h2>
-    <div class="features-grid">
-      <div class="feature-card fade-up">
-        <div class="fc-icon" style="background:rgba(61,190,74,0.12)">📡</div>
-        <div class="fc-title">Radar de Oportunidades</div>
-        <div class="fc-desc">Monitoramento contínuo do mercado financeiro. Você recebe notificações assim que uma proposta melhor aparece — sem precisar fazer nada.</div>
+    <div style="text-align:center" class="fade-up">
+      <div class="eyebrow-sm">Validação de mercado</div>
+      <h2 class="section-title">A dor é real.<br><span>Os números provam.</span></h2>
+      <p class="section-sub" style="margin:0 auto">Realizamos 15 entrevistas de descoberta de problema (Customer Discovery) com potenciais usuários reais.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:48px">
+      <div class="how-card fade-up" style="text-align:center">
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:52px; font-weight:800; color:var(--green); line-height:1">88,9%</div>
+        <div style="font-size:14px; color:var(--text2); margin-top:8px; line-height:1.5">nunca revisaram suas dívidas após contratar</div>
       </div>
-      <div class="feature-card fade-up">
-        <div class="fc-icon" style="background:rgba(28,43,69,0.08)">💳</div>
-        <div class="fc-title">Todas as dívidas centralizadas</div>
-        <div class="fc-desc">Financiamento imobiliário, cartão de crédito, empréstimo pessoal e veículo — tudo numa tela só, com total clareza de quanto você deve e paga.</div>
+      <div class="how-card fade-up" style="text-align:center">
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:52px; font-weight:800; color:var(--green); line-height:1">77,8%</div>
+        <div style="font-size:14px; color:var(--text2); margin-top:8px; line-height:1.5">sentem que pagam caro, mas não sabem o que fazer</div>
       </div>
-      <div class="feature-card fade-up">
-        <div class="fc-icon" style="background:rgba(61,190,74,0.12)">🧮</div>
-        <div class="fc-title">Simulador de Economia</div>
-        <div class="fc-desc">Veja exatamente quanto vai economizar antes de aceitar qualquer proposta. Simule diferentes taxas e prazos de forma visual e instantânea.</div>
+      <div class="how-card fade-up" style="text-align:center">
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:52px; font-weight:800; color:var(--green); line-height:1">66,7%</div>
+        <div style="font-size:14px; color:var(--text2); margin-top:8px; line-height:1.5">não sabem como agir ou por onde começar</div>
       </div>
-      <div class="feature-card fade-up">
-        <div class="fc-icon" style="background:rgba(28,43,69,0.08)">🔒</div>
-        <div class="fc-title">Open Finance Seguro</div>
-        <div class="fc-desc">Tecnologia regulamentada pelo Banco Central do Brasil (Res. 32/2020). Seus dados são criptografados e você pode revogar o acesso a qualquer momento.</div>
+      <div class="how-card fade-up" style="text-align:center">
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:52px; font-weight:800; color:var(--green); line-height:1">88,9%</div>
+        <div style="font-size:14px; color:var(--text2); margin-top:8px; line-height:1.5">têm baixo conhecimento sobre portabilidade e Open Finance</div>
       </div>
-      <div class="feature-card full fade-up">
-        <div style="display:flex; gap:24px; align-items:center; flex-wrap:wrap">
-          <div style="flex:1; min-width:200px">
-            <div class="fc-icon" style="background:rgba(61,190,74,0.15)">🤖</div>
-            <div class="fc-title">IA que trabalha por você</div>
-            <div class="fc-desc">Nossa inteligência artificial analisa seu perfil de crédito, compara com o mercado em tempo real e gera propostas personalizadas de portabilidade — os bancos competem pela sua dívida.</div>
-          </div>
-          <div style="flex:1; min-width:200px; display:flex; flex-direction:column; gap:10px">
-            <div style="background:rgba(61,190,74,0.1); border:1px solid rgba(61,190,74,0.25); border-radius:12px; padding:12px 16px">
-              <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:2px">Economia média por usuário</div>
-              <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:28px; font-weight:800; color:var(--green)">R$ 287<span style="font-size:14px; color:rgba(255,255,255,0.5)">/mês</span></div>
-            </div>
-            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:12px 16px">
-              <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:2px">Redução média de taxa</div>
-              <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:28px; font-weight:800; color:white">2,6%<span style="font-size:14px; color:rgba(255,255,255,0.5)"> a.a.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div style="background:var(--card); border:1px solid var(--border); border-left:4px solid var(--green); border-radius:0 16px 16px 0; padding:20px 24px; margin-top:32px; max-width:700px; margin-left:auto; margin-right:auto" class="fade-up">
+      <div style="font-size:11px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px">Dor latente — fala real dos entrevistados</div>
+      <div style="font-size:16px; color:var(--text); line-height:1.7; font-style:italic">"Eu sinto que estou pagando caro, mas não sei o que fazer — e por isso não faço nada."</div>
     </div>
   </div>
 </section>
 
-<!-- SAVINGS NUMBERS -->
-<div class="savings-section fade-up">
-  <div class="section-inner" style="text-align:center">
-    <div class="section-badge" style="background:rgba(61,190,74,0.15); color:var(--green)">Impacto real</div>
-    <h2 class="section-title" style="color:white; margin-top:8px">Números que falam<br><span>por si só</span></h2>
-  </div>
-  <div class="savings-grid">
-    <div class="saving-item fade-up">
-      <div class="saving-val">R$ 51k</div>
-      <div class="saving-lbl">economia média num financiamento imobiliário</div>
-    </div>
-    <div class="saving-item fade-up">
-      <div class="saving-val">3 dias</div>
-      <div class="saving-lbl">para concluir portabilidade via Open Finance</div>
-    </div>
-    <div class="saving-item fade-up">
-      <div class="saving-val">27+</div>
-      <div class="saving-lbl">bancos já habilitados no Open Finance</div>
-    </div>
-    <div class="saving-item fade-up">
-      <div class="saving-val">100%</div>
-      <div class="saving-lbl">digital, sem agência, sem fila</div>
-    </div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<section style="background:white">
+<!-- CONCORRENTES -->
+<section id="diferenciais">
   <div class="section-inner">
-    <div style="text-align:center">
-      <div class="section-badge">Depoimentos</div>
-      <h2 class="section-title">O que nossos<br><span>usuários dizem</span></h2>
+    <div class="fade-up">
+      <div class="eyebrow-sm">Por que o QuitAI</div>
+      <h2 class="section-title">O que nos diferencia<br><span>da concorrência</span></h2>
     </div>
-    <div class="testimonials-grid">
-      <div class="testi-card fade-up">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">"Fiz financiamento imobiliário e nunca soube que podia trocar de banco. O QuitAI me mostrou que estava pagando caro — e o processo foi 100% pelo celular, sem burocracia."</div>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:#2D6BE4">M</div>
-          <div><div class="testi-name">Marcos Oliveira</div><div class="testi-role">Analista de sistemas · SP</div></div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:48px">
+      <div class="tech-card fade-up">
+        <div class="tech-icon">🆚</div>
+        <div class="tech-title">vs. FinanZero / Bom Pra Crédito</div>
+        <div class="tech-desc">Eles empurram novo crédito. Nós <strong style="color:var(--text)">reduzimos a dívida que você já tem</strong>. Nossa IA lê o contrato atual e entrega a melhor proposta de portabilidade — você finaliza direto no banco, sem intermediário.</div>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-icon">🆚</div>
+        <div class="tech-title">vs. Creditas</div>
+        <div class="tech-desc">Eles exigem que você coloque sua casa ou carro como garantia. Nós <strong style="color:var(--text)">não tocamos no seu dinheiro</strong> e não amarramos seus bens. Você vai ao banco com poder de barganha — sem risco.</div>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-icon">🆚</div>
+        <div class="tech-title">vs. Melhor Taxa (caso histórico)</div>
+        <div class="tech-desc">Eles morreram esmagados pelo peso operacional de assessores humanos. Nós somos <strong style="color:var(--text)">100% digital via IA e Open Finance</strong> — dados cruzados em segundos, sem exército de corretores, infinitamente mais escalável.</div>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-icon">🆚</div>
+        <div class="tech-title">vs. Serasa Limpa Nome</div>
+        <div class="tech-desc">Eles atuam na UTI — quando o nome já está sujo. Nós atuamos na <strong style="color:var(--text)">prevenção</strong>: salvamos o cliente adimplente que está sangrando com juros abusivos antes de quebrar.</div>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-icon">🤝</div>
+        <div class="tech-title">Parceiros estratégicos: Belvo + Pluggy</div>
+        <div class="tech-desc">Não construímos do zero. Usamos as melhores APIs de Open Finance disponíveis no mercado, conectando ao Itaú, Nubank, Bradesco com segurança bancária desde o dia 1.</div>
+        <div class="tech-tags">
+          <span class="tech-tag">Belvo</span>
+          <span class="tech-tag">Pluggy</span>
+          <span class="tech-tag">Open Finance BCB</span>
         </div>
       </div>
-      <div class="testi-card fade-up">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">"Tentei fazer portabilidade sozinho, mas desisti pela burocracia. Com o QuitAI bastou conectar o banco e em minutos já apareceu qual instituição podia me atender melhor."</div>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:#E4732D">A</div>
-          <div><div class="testi-name">Ana Paula Lima</div><div class="testi-role">Professora · MG</div></div>
-        </div>
+      <div class="tech-card fade-up" style="background:linear-gradient(135deg,rgba(61,190,74,0.08),rgba(61,190,74,0.02)); border-color:rgba(61,190,74,0.2)">
+        <div class="tech-icon">💡</div>
+        <div class="tech-title">Nossa vantagem central</div>
+        <div class="tech-desc" style="color:var(--text2)">Somos o <strong style="color:var(--text)">"advogado de defesa"</strong> do brasileiro endividado. Sem rabo preso com banco A ou B. Sem exigir bens como garantia. Sem cobrar de quem está sofrendo. <strong style="color:var(--green)">Cobramos de quem tem dinheiro: os bancos.</strong></div>
       </div>
-      <div class="testi-card fade-up">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-text">"Eu sentia que pagava caro mas não sabia o que fazer. O QuitAI mostrou em reais quanto eu desperdiçava por mês — aí ficou fácil decidir."</div>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:#3DBE4A">R</div>
-          <div><div class="testi-name">Ricardo Santos</div><div class="testi-role">Motorista de app · RJ</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PIX / ASSINAR -->
-<section class="pix-section" id="assinar">
-  <div class="pix-inner">
-    <div class="section-badge" style="background:rgba(61,190,74,0.15); color:var(--green)">Assinar agora</div>
-    <h2 class="section-title" style="color:white; margin-top:8px">Comece a economizar<br><span>por apenas R$ 5,99/mês</span></h2>
-    <p style="color:rgba(255,255,255,0.5); font-size:15px; margin-top:8px">Pague via Pix e receba acesso imediato ao QuitAI.</p>
-
-    <div class="pix-card fade-up">
-
-      <!-- Preço -->
-      <div class="pix-price-box">
-        <div class="pix-price-label">Assinatura mensal</div>
-        <div class="pix-price-val"><span>R$</span>5<em>,99/mês</em></div>
-        <div class="pix-price-note">✓ Acesso completo · Cancele quando quiser</div>
-        <div style="margin-top:10px; background:rgba(255,186,59,0.1); border:1px solid rgba(255,186,59,0.3); border-radius:10px; padding:10px 14px; font-size:12px; color:var(--text2); line-height:1.6;">
-          ⚠️ <strong style="color:#b38200">Aviso:</strong> Este pagamento faz parte do processo de validação da nossa startup. O valor de <strong style="color:#b38200">R$ 5,99 será devolvido amanhã</strong> para todos os participantes.
-        </div>
-      </div>
-
-      <!-- QR Code -->
-      <div class="pix-qr-wrap">
-        <div class="pix-qr" style="padding:8px; background:white;">
-          <img src="data:image/png;base64,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" style="width:100%; height:100%; object-fit:contain; border-radius:8px;" alt="QR Code Pix QuitAI"/>
-        </div>
-        <div class="pix-qr-label">📱 Escaneie com qualquer app de banco · R$ 5,99</div>
-      </div>
-
-      <!-- Chave Pix -->
-      <div class="pix-key-box" onclick="copyPix()">
-        <div class="pix-key-left">
-          <div class="pix-key-type">🔑 Chave Pix · Chave Aleatória</div>
-          <div class="pix-key-val" style="font-size:13px; letter-spacing:0.5px">ce79db4e-b684-4542-a140-f5e6fdeeb065</div>
-        </div>
-        <button class="pix-copy-btn" id="copyBtn">Copiar</button>
-      </div>
-
-      <!-- Passos -->
-      
-
-<div class="pix-steps">
-        <div class="pix-step"><div class="pix-step-num">1</div>Abra o app do seu banco e acesse o Pix</div>
-        <div class="pix-step"><div class="pix-step-num">2</div>Escaneie o QR Code ou copie a chave acima</div>
-        <div class="pix-step"><div class="pix-step-num">3</div>Envie <strong>R$ 5,99</strong> com seu nome na descrição</div>
-        <div class="pix-step"><div class="pix-step-num">4</div>Me envie o comprovante via WhatsApp</div>
-      </div>
-
-      <!-- Após o pix -->
-      <div class="pix-after">
-        <b>O que acontece depois?</b><br>
-        Após confirmar o pagamento, você recebe o link de acesso ao QuitAI em até <b>1 hora</b> via WhatsApp. Em caso de dúvidas, fale diretamente comigo.
-      </div>
-
-      <!-- WhatsApp -->
-      <a class="whatsapp-btn" href="https://wa.me/5547991813876?text=Ol%C3%A1!%20Fiz%20o%20Pix%20de%20R%24%205%2C99%20para%20assinar%20o%20QuitAI.%20Segue%20o%20comprovante!" target="_blank">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Enviar comprovante via WhatsApp
-      </a>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section style="background:var(--bg)">
+<!-- MONETIZAÇÃO -->
+<section style="background:rgba(255,255,255,0.015)">
   <div class="section-inner">
-    <div style="text-align:center">
-      <div class="section-badge">Dúvidas frequentes</div>
-      <h2 class="section-title">Perguntas <span>frequentes</span></h2>
+    <div style="text-align:center" class="fade-up">
+      <div class="eyebrow-sm">Modelo de negócio</div>
+      <h2 class="section-title">Como o QuitAI<br><span>ganha dinheiro</span></h2>
+      <p class="section-sub" style="margin:0 auto; max-width:560px">O usuário não paga para usar. Monetização invisível para reduzir fricção.</p>
     </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q">O QuitAI é seguro? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Sim. Usamos Open Finance, tecnologia regulamentada pelo Banco Central do Brasil (Resolução 32/2020). Seus dados são criptografados e você pode revogar o acesso a qualquer momento. O QuitAI nunca tem acesso à sua senha bancária.</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:48px">
+      <div class="how-card fade-up">
+        <div style="font-size:32px; margin-bottom:12px">🏦</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:16px; font-weight:700; margin-bottom:8px">CPA / CPL dos bancos</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6">Modelo principal. Bancos pagam por cada cliente convertido que levamos até eles com nome limpo e pronto para fechar negócio — o mesmo modelo do Trivago, Buscapé e Serasa eCred.</div>
+        <div class="how-tag">Modelo principal · Escalável</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Como funciona a portabilidade de crédito? <span class="faq-icon">+</span></div>
-        <div class="faq-a">A portabilidade de crédito é um direito garantido por lei (Resolução BCB 4.292). Você pode transferir qualquer dívida para outro banco que ofereça taxa menor. O processo é 100% digital e leva até 3 dias úteis.</div>
+      <div class="how-card fade-up">
+        <div style="font-size:32px; margin-bottom:12px">💎</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:16px; font-weight:700; margin-bottom:8px">Freemium B2C</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6">Diagnóstico gratuito. O relatório completo com o roteiro de negociação gerado por IA — qual banco ir, qual taxa exata, o script para o gerente — por R$ 19,90 a R$ 29,90.</div>
+        <div class="how-tag">Modelo secundário</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Quais tipos de dívida o app cobre? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Financiamento imobiliário, cartão de crédito, empréstimo pessoal e financiamento de veículo. Qualquer dívida conectada via Open Finance é analisada automaticamente.</div>
+      <div class="how-card fade-up">
+        <div style="font-size:32px; margin-bottom:12px">🤝</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:16px; font-weight:700; margin-bottom:8px">Cooperativas regionais (SC)</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6">Viacredi/Ailos, Sicredi, Sicoob. Elas têm taxas menores e querem atrair clientes dos bancões. Mensalidade ou comissão por cooperado convertido. A Viacredi foi citada organicamente pelos usuários entrevistados.</div>
+        <div class="how-tag">Go-to-market local · SC</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Como faço para cancelar? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Basta me enviar uma mensagem no WhatsApp pedindo o cancelamento. Sem burocracia, sem taxa. O cancelamento é imediato.</div>
+    </div>
+    <div style="background:var(--card); border:1px solid rgba(61,190,74,0.2); border-radius:16px; padding:24px; margin-top:24px; text-align:center" class="fade-up">
+      <div style="font-family:'Bricolage Grotesque',sans-serif; font-size:18px; font-weight:700; color:var(--text); line-height:1.5">"Nós resolvemos a dor do cliente para ganhar <span style="color:var(--green)">ESCALA</span>. E resolvemos a dor do banco para ganhar <span style="color:var(--green)">DINHEIRO</span>."</div>
+    </div>
+  </div>
+</section>
+<section id="tecnologia">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="eyebrow-sm">Tecnologia</div>
+      <h2 class="section-title">Construído com as<br><span>melhores tecnologias</span></h2>
+      <p class="section-sub">Stack moderno, seguro e escalável para servir milhões de brasileiros.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card featured fade-up">
+        <div class="tech-icon">🤖</div>
+        <div class="tech-title">Inteligência Artificial — Claude (Anthropic)</div>
+        <div class="tech-desc">Usamos a IA Claude da Anthropic para analisar o perfil financeiro de cada usuário e gerar propostas de portabilidade personalizadas e realistas em tempo real. O modelo entende o mercado brasileiro de crédito e retorna as melhores oportunidades em segundos.</div>
+        <div class="tech-tags">
+          <span class="tech-tag">Claude Sonnet</span>
+          <span class="tech-tag">Análise financeira</span>
+          <span class="tech-tag">Propostas personalizadas</span>
+          <span class="tech-tag">Tempo real</span>
+        </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Por que só R$ 5,99? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Queremos que o máximo de pessoas tenha acesso a essa tecnologia. Em nossas pesquisas com 15 usuários reais, 77,8% sentem que pagam caro mas não sabem o que fazer. Se o QuitAI te ajudar a economizar R$ 287 por mês, o retorno sobre R$ 5,99 é de mais de 4.700%. Faz todo sentido.</div>
+      <div class="tech-card fade-up">
+        <div class="tech-icon">🏦</div>
+        <div class="tech-title">Open Finance (BCB)</div>
+        <div class="tech-desc">Integração com o ecossistema Open Finance do Banco Central, permitindo leitura segura de dados bancários com consentimento explícito do usuário.</div>
+        <div class="tech-tags">
+          <span class="tech-tag">Resolução 32/2020</span>
+          <span class="tech-tag">OAuth2</span>
+          <span class="tech-tag">27+ bancos</span>
+        </div>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-icon">📱</div>
+        <div class="tech-title">React Native + Expo</div>
+        <div class="tech-desc">App nativo para iOS e Android com uma única base de código. Performance fluida, atualizações OTA e experiência premium em todos os dispositivos.</div>
+        <div class="tech-tags">
+          <span class="tech-tag">iOS</span>
+          <span class="tech-tag">Android</span>
+          <span class="tech-tag">Expo</span>
+        </div>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-icon">🔒</div>
+        <div class="tech-title">Backend Seguro (Node.js)</div>
+        <div class="tech-desc">API REST com autenticação JWT, rate limiting, validação de dados e criptografia. A chave da IA nunca é exposta ao cliente — tudo passa pelo servidor.</div>
+        <div class="tech-tags">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">JWT</span>
+          <span class="tech-tag">LGPD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="contact-section">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="eyebrow-sm">Contato</div>
+      <h2 class="section-title">Vamos conversar?</h2>
+    </div>
+    <div class="contact-card fade-up">
+      <div class="contact-icon">💬</div>
+      <div class="contact-title">Fale com a gente</div>
+      <div class="contact-sub">
+        Tem dúvidas sobre o QuitAI, quer fazer parte do nosso time ou propor uma parceria? A gente responde rápido — somos uma startup e adoramos conversar com pessoas.
+      </div>
+      <div class="contact-btns">
+        <a href="https://wa.me/5547991813876?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20QuitAI!" target="_blank" class="btn-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://danielsouzabim-prog.github.io/quitai-landing-page" target="_blank" class="btn btn-primary" style="text-decoration:none">
+          💸 Assinar por R$ 5,99/mês
+        </a>
       </div>
     </div>
   </div>
@@ -861,50 +920,51 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <svg width="110" height="32" viewBox="0 0 300 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 46,18 A 22 22 0 1 0 46,50" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="9" stroke-linecap="round"/>
-      <line x1="46" y1="50" x2="51" y2="60" stroke="rgba(255,255,255,0.7)" stroke-width="9" stroke-linecap="round"/>
-      <polyline points="24,35 34,46 58,14" fill="none" stroke="#3DBE4A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <polygon points="58,7 68,18 54,20" fill="#3DBE4A"/>
-      <text x="78" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="rgba(255,255,255,0.7)">Quit</text>
-      <text x="190" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="#3DBE4A">AI</text>
-    </svg>
-    <div class="footer-tagline">
-      Pague menos nas suas dívidas com Inteligência Artificial e Open Finance.<br>
-      Dúvidas? <a href="https://wa.me/5547991813876" style="color:var(--green)">Fale no WhatsApp (47) 99181-3876</a><br><br>
-      © 2026 QuitAI · Open Finance · LGPD · Banco Central do Brasil
+    <div class="footer-top">
+      <div class="footer-brand">
+        <svg width="110" height="32" viewBox="0 0 300 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 46,18 A 22 22 0 1 0 46,50" fill="none" stroke="rgba(232,240,255,0.6)" stroke-width="9" stroke-linecap="round"/>
+          <line x1="46" y1="50" x2="51" y2="60" stroke="rgba(232,240,255,0.6)" stroke-width="9" stroke-linecap="round"/>
+          <polyline points="24,35 34,46 58,14" fill="none" stroke="#3DBE4A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="58,7 68,18 54,20" fill="#3DBE4A"/>
+          <text x="78" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="rgba(232,240,255,0.6)">Quit</text>
+          <text x="190" y="54" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="#3DBE4A">AI</text>
+        </svg>
+        <div class="footer-tagline">Inteligência Artificial para você pagar menos nas suas dívidas. Open Finance + IA + Portabilidade de Crédito.</div>
+      </div>
+      <div>
+        <div class="footer-links-title">Navegação</div>
+        <div class="footer-links">
+          <a href="#sobre">Sobre o QuitAI</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#tecnologia">Tecnologia</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-links-title">Produto</div>
+        <div class="footer-links">
+          <a href="https://danielsouzabim-prog.github.io/quitai-landing-page" target="_blank">Assinar — R$ 5,99/mês</a>
+          <a href="https://wa.me/5547991813876" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 QuitAI · Todos os direitos reservados · Daniel Luis de Souza</div>
+      <div class="footer-badges">
+        <span class="footer-badge">Open Finance · BCB</span>
+        <span class="footer-badge">LGPD</span>
+        <span class="footer-badge">Res. BCB 4.292</span>
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
-// Copy Pix key
-function copyPix() {
-  navigator.clipboard.writeText('00020126580014BR.GOV.BCB.PIX0136ce79db4e-b684-4542-a140-f5e6fdeeb06552040000530398654045.995802BR5920Daniel Luis de Souza6009SAO PAULO62140510E9uQihfUQS6304C431').then(() => {
-    const btn = document.getElementById('copyBtn');
-    btn.textContent = '✓ Copiado!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'Copiar';
-      btn.classList.remove('copied');
-    }, 2500);
-  });
-}
-
-// FAQ toggle
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.querySelector('.faq-q').addEventListener('click', () => {
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
-
-// Scroll animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
     }
   });
 }, { threshold: 0.1 });
